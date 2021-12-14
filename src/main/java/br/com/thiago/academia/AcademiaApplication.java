@@ -1,17 +1,13 @@
 package br.com.thiago.academia;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.format.datetime.joda.LocalDateTimeParser;
-
 import br.com.thiago.academia.domain.Aparelho;
 import br.com.thiago.academia.domain.Categoria;
 import br.com.thiago.academia.domain.Cidade;
@@ -76,6 +72,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		Cidade cidade01 = new Cidade(null, "Goiânia", estado01);
 		Cidade cidade02 = new Cidade(null, "Aragoiânia", estado01);
 		
+		estado01.getCidades().addAll(Arrays.asList(cidade01,cidade02));
+		
 		
 		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", LocalDateTime.now(), Status.ATIVO, Genero.MASCULINO, 
 										LocalDate.of(2000, 1, 28), "50.207.464-4", EstadoCivil.SOLTEIRO, "primeiro contato com academia");
@@ -84,6 +82,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		Endereco endereco01 = new Endereco(null, "Rua CP19", "156-CP","Quadra CP 7", "Celina Park", "74.373-190", cidade01, cliente01);
 		Endereco endereco02 = new Endereco(null, "Rua ED 45", "1", "Quadra ED 20", "Eldorado", "74.179-505", cidade01, cliente01);
+		
+		cidade01.getEnderecos().addAll(Arrays.asList(endereco01,endereco02));
 		
 		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", LocalDateTime.now(), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
 		
@@ -118,5 +118,6 @@ public class AcademiaApplication implements CommandLineRunner{
 		exercicioRepository.saveAll(Arrays.asList(exercicio01,exercicio02,exercicio03));
 		
 	}
-
 }
+
+

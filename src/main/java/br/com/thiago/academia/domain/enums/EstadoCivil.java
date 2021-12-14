@@ -30,7 +30,7 @@ public enum EstadoCivil {
 		
 		throw new IllegalArgumentException("Id inválido: "+ cod);
 	}
-	
+
 	
 	public Integer getCod() {
 		return cod;
@@ -44,7 +44,5 @@ public enum EstadoCivil {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
-	
 }
+	
