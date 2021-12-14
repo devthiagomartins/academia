@@ -91,6 +91,9 @@ public class AcademiaApplication implements CommandLineRunner{
 		FichaDeAvaliacaoFisica avaliacao02 = new FichaDeAvaliacaoFisica(null, 71.0, LocalDateTime.of(LocalDate.of(2021, 12, 27), LocalTime.of(14, 00)),
 																		2.600, 19, 50.0, 1.0, 2.3,25.0, 46.0, 17.9, "reavaliar taxa de lipideos semanal", cliente01, instrutor01);
 		
+		instrutor01.getAvaliacoes().addAll(Arrays.asList(avaliacao01, avaliacao02));
+		cliente01.getAvaliacoes().addAll(Arrays.asList(avaliacao01, avaliacao02));
+		
 		Categoria categoria01 = new Categoria(null,"Membros superiores");
 		Categoria categoria02 = new Categoria(null,"Membros inferiores");
 		
@@ -100,11 +103,20 @@ public class AcademiaApplication implements CommandLineRunner{
 		FichaDeTreino fichaDeTreino01 = new FichaDeTreino(null, "Ficha de Treino 01", StatusTreino.ANDAMENTO, LocalDateTime.now(), LocalDate.of(2021, 12, 8), LocalDate.of(2021, 12, 26),"Ganho de massa muscular", 6, "ficha referente mes 12/2021", instrutor01, cliente01);
 		FichaDeTreino fichaDeTreino02 = new FichaDeTreino(null, "Ficha de Treino 02", StatusTreino.CANCELADO, LocalDateTime.now(), LocalDate.of(2021, 12, 28), LocalDate.of(2022, 01, 18),"Secar e queimar gorduras", 4, "repetir ficha no mes 02/2022", instrutor01, cliente01);
 		
+		instrutor01.getFichaDeTreinos().addAll(Arrays.asList(fichaDeTreino01, fichaDeTreino02));
+		cliente01.getFichaDeTreinos().addAll(Arrays.asList(fichaDeTreino01,fichaDeTreino02));
+		
 		
 		Exercicio exercicio01 = new Exercicio(null, "Agachamento", 3, 15, 30.0, 30.0, Intensidade.MODERADA, null, fichaDeTreino02, categoria02, aparelho01);
 		Exercicio exercicio02 = new Exercicio(null, "Triceps corda",2, 15, 40.0, 40.0, Intensidade.LEVE, "drop-set", fichaDeTreino02, categoria01, aparelho02);
 		Exercicio exercicio03 = new Exercicio(null, "Afundo",3, 15, 25.0, 30.0, Intensidade.LEVE, null, fichaDeTreino02, categoria02, aparelho01);
 
+		categoria01.getExercicios().addAll(Arrays.asList(exercicio02));
+		categoria02.getExercicios().addAll(Arrays.asList(exercicio01, exercicio03));
+		
+		aparelho01.getExercicios().addAll(Arrays.asList(exercicio01, exercicio03));
+		aparelho02.getExercicios().addAll(Arrays.asList(exercicio02));
+		
 		
 		estadoRepository.saveAll(Arrays.asList(estado01));
 		cidadeRepository.saveAll(Arrays.asList(cidade01, cidade02));

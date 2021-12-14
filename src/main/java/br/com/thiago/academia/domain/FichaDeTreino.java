@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.thiago.academia.domain.enums.StatusTreino;
 
 @Entity
@@ -33,10 +35,12 @@ public class FichaDeTreino implements Serializable{
 	private Integer frequenciaSemanal;
 	private String observacao;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "instrutor_id")
 	private Instrutor instrutor;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

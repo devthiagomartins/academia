@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.thiago.academia.domain.enums.StatusAparelho;
 
 @Entity
@@ -28,6 +30,7 @@ public class Aparelho implements Serializable{
 	private Integer statusAparelho;
 	private String observacao;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "aparelho")
 	private List<Exercicio> exercicios = new ArrayList<>();
 	

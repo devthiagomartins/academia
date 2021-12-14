@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class FichaDeAvaliacaoFisica implements Serializable{
 
@@ -32,10 +34,12 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 	private Double pesoGordo;
 	private String observacao;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "instrutor_id")
 	private Instrutor instrutor;

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.thiago.academia.domain.enums.Intensidade;
 
 @Entity
@@ -28,10 +30,12 @@ public class Exercicio implements Serializable{
 	private Integer intensidade;
 	private String observacao;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "fichaDeTreino_id")
 	private FichaDeTreino fichaDeTreino;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
@@ -137,6 +141,7 @@ public class Exercicio implements Serializable{
 		this.fichaDeTreino = fichaDeTreino;
 	}
 
+	
 	public Categoria getCategoria() {
 		return categoria;
 	}
