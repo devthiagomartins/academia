@@ -17,7 +17,7 @@ public class CategoriaResource {
 	CategoriaService categoriaService;
 	
 	@RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<?> findById(@PathVariable Integer id){
+	public ResponseEntity<Categoria> findById(@PathVariable Integer id){
 		
 		Categoria obj = categoriaService.findById(id);
 		return ResponseEntity.ok().body(obj);

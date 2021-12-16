@@ -1,11 +1,11 @@
 package br.com.thiago.academia.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +28,9 @@ public class FichaDeTreino implements Serializable{
 	private Integer id;
 	private String nome;
 	private Integer statusTreino;
-	private LocalDateTime dataDeRegistro;
-	private LocalDate dataDeInicio;
-	private LocalDate dataDeConclusao;
+	private Date dataDeRegistro;
+	private Date dataDeInicio;
+	private Date dataDeConclusao;
 	private String objetivo;
 	private Integer frequenciaSemanal;
 	private String observacao;
@@ -53,8 +53,8 @@ public class FichaDeTreino implements Serializable{
 	}
 
 
-	public FichaDeTreino(Integer id, String nome, StatusTreino statusTreino, LocalDateTime dataDeRegistro,
-			LocalDate dataDeInicio, LocalDate dataDeConclusao, String objetivo, Integer frequenciaSemanal,
+	public FichaDeTreino(Integer id, String nome, StatusTreino statusTreino, Date dataDeRegistro,
+			Date dataDeInicio, Date dataDeConclusao, String objetivo, Integer frequenciaSemanal,
 			String observacao, Instrutor instrutor, Cliente cliente) {
 		super();
 		this.id = id;
@@ -95,27 +95,27 @@ public class FichaDeTreino implements Serializable{
 		this.statusTreino = statusTreino.getCod();
 	}
 
-	public LocalDateTime getDataDeRegistro() {
+	public Date getDataDeRegistro() {
 		return dataDeRegistro;
 	}
 
-	public void setDataDeRegistro(LocalDateTime dataDeRegistro) {
+	public void setDataDeRegistro(Date dataDeRegistro) {
 		this.dataDeRegistro = dataDeRegistro;
 	}
 
-	public LocalDate getDataDeInicio() {
+	public Date getDataDeInicio() {
 		return dataDeInicio;
 	}
 
-	public void setDataDeInicio(LocalDate dataDeInicio) {
+	public void setDataDeInicio(Date dataDeInicio) {
 		this.dataDeInicio = dataDeInicio;
 	}
 
-	public LocalDate getDataDeConclusao() {
+	public Date getDataDeConclusao() {
 		return dataDeConclusao;
 	}
 
-	public void setDataDeConclusao(LocalDate dataDeConclusao) {
+	public void setDataDeConclusao(Date dataDeConclusao) {
 		this.dataDeConclusao = dataDeConclusao;
 	}
 

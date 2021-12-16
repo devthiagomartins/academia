@@ -1,7 +1,7 @@
 package br.com.thiago.academia.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 	private Integer id;
 	
 	private Double peso;
-	private LocalDateTime dataDeResigtro;
+	private Date dataDeRegistro;
 	private Double gastoMetabolico;
 	private Integer idadeMetabolica;
 	private Double porcentagemDeLiquido;
@@ -50,14 +50,14 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 
 
 
-	public FichaDeAvaliacaoFisica(Integer id, Double peso, LocalDateTime dataDeResigtro, Double gastoMetabolico,
+	public FichaDeAvaliacaoFisica(Integer id, Double peso, Date dataDeResigtro, Double gastoMetabolico,
 			Integer idadeMetabolica, Double porcentagemDeLiquido, Double gorduraVisceral, Double massaOssea,
 			Double porcentagemDeGordura, Double massaMuscular, Double pesoGordo, String observacao, Cliente cliente,
 			Instrutor instrutor) {
 		super();
 		this.id = id;
 		this.peso = peso;
-		this.dataDeResigtro = dataDeResigtro;
+		this.dataDeRegistro = dataDeResigtro;
 		this.gastoMetabolico = gastoMetabolico;
 		this.idadeMetabolica = idadeMetabolica;
 		this.porcentagemDeLiquido = porcentagemDeLiquido;
@@ -89,12 +89,12 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 		this.peso = peso;
 	}
 
-	public LocalDateTime getDataDeResigtro() {
-		return dataDeResigtro;
+	public Date getDataDeRegistro() {
+		return dataDeRegistro;
 	}
 
-	public void setDataDeResigtro(LocalDateTime dataDeResigtro) {
-		this.dataDeResigtro = dataDeResigtro;
+	public void setDataDeRegistro(Date dataDeResigtro) {
+		this.dataDeRegistro = dataDeResigtro;
 	}
 
 	public Double getGastoMetabolico() {

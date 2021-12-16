@@ -1,8 +1,8 @@
 package br.com.thiago.academia.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ public class Instrutor implements Serializable{
 	
 	private String nome;
 	private String cref;
-	private LocalDateTime dataDeCadastro;
+	private Date dataDeCadastro;
 	private Integer status;
 	private Integer genero;
 	private String observacao;
@@ -43,7 +43,7 @@ public class Instrutor implements Serializable{
 	}
 
 
-	public Instrutor(Integer id, String nome, String cref, LocalDateTime dataDeCadastro, Status status, Genero genero,
+	public Instrutor(Integer id, String nome, String cref, Date dataDeCadastro, Status status, Genero genero,
 			String observacao) {
 		super();
 		this.id = id;
@@ -86,12 +86,12 @@ public class Instrutor implements Serializable{
 	}
 
 
-	public LocalDateTime getDataDeCadastro() {
+	public Date getDataDeCadastro() {
 		return dataDeCadastro;
 	}
 
 
-	public void setDataDeCadastro(LocalDateTime dataDeCadastro) {
+	public void setDataDeCadastro(Date dataDeCadastro) {
 		this.dataDeCadastro = dataDeCadastro;
 	}
 

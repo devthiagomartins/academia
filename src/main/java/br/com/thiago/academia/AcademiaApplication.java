@@ -1,13 +1,14 @@
 package br.com.thiago.academia;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import br.com.thiago.academia.domain.Aparelho;
 import br.com.thiago.academia.domain.Categoria;
 import br.com.thiago.academia.domain.Cidade;
@@ -66,6 +67,9 @@ public class AcademiaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		sdf.format(now);
 		
 		Estado estado01 = new Estado(null, "Goiás");
 		
@@ -75,8 +79,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		estado01.getCidades().addAll(Arrays.asList(cidade01,cidade02));
 		
 		
-		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", LocalDateTime.now(), Status.ATIVO, Genero.MASCULINO, 
-										LocalDate.of(2000, 1, 28), "50.207.464-4", EstadoCivil.SOLTEIRO, "primeiro contato com academia");
+		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", sdf.parse("07/12/2021 12:40:00"), Status.ATIVO, Genero.MASCULINO, 
+										sdf.parse("28/01/2000 00:00:00"), "50.207.464-4", EstadoCivil.SOLTEIRO, "primeiro contato com academia");
 		
 		cliente01.getTelefones().addAll(Arrays.asList("99852208","99561044"));
 		
@@ -85,10 +89,10 @@ public class AcademiaApplication implements CommandLineRunner{
 		
 		cidade01.getEnderecos().addAll(Arrays.asList(endereco01,endereco02));
 		
-		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", LocalDateTime.now(), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
+		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", sdf.parse("01/02/2019 12:45:00"), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
 		
-		FichaDeAvaliacaoFisica avaliacao01 = new FichaDeAvaliacaoFisica(null, 74.0, LocalDateTime.now(),2.300, 19, 52.6, 1.5, 2.3, 29.2, 43.2, 18.7, "fazer exame de sangue", cliente01, instrutor01);
-		FichaDeAvaliacaoFisica avaliacao02 = new FichaDeAvaliacaoFisica(null, 71.0, LocalDateTime.of(LocalDate.of(2021, 12, 27), LocalTime.of(14, 00)),
+		FichaDeAvaliacaoFisica avaliacao01 = new FichaDeAvaliacaoFisica(null, 74.0, sdf.parse("07/12/2021 13:00:00") ,2.300, 19, 52.6, 1.5, 2.3, 29.2, 43.2, 18.7, "fazer exame de sangue", cliente01, instrutor01);
+		FichaDeAvaliacaoFisica avaliacao02 = new FichaDeAvaliacaoFisica(null, 71.0,sdf.parse("27/12/2021 14:00:00"),
 																		2.600, 19, 50.0, 1.0, 2.3,25.0, 46.0, 17.9, "reavaliar taxa de lipideos semanal", cliente01, instrutor01);
 		
 		instrutor01.getAvaliacoes().addAll(Arrays.asList(avaliacao01, avaliacao02));
@@ -100,8 +104,8 @@ public class AcademiaApplication implements CommandLineRunner{
 		Aparelho aparelho01 = new Aparelho(null, "Smith", 300.00, StatusAparelho.NORMAL, "aparelho para treino");
 		Aparelho aparelho02 = new Aparelho(null,"cavalinho", 150.00, StatusAparelho.MANUTENCAO, "aparelho quebrado por excesso de peso");
 		
-		FichaDeTreino fichaDeTreino01 = new FichaDeTreino(null, "Ficha de Treino 01", StatusTreino.ANDAMENTO, LocalDateTime.now(), LocalDate.of(2021, 12, 8), LocalDate.of(2021, 12, 26),"Ganho de massa muscular", 6, "ficha referente mes 12/2021", instrutor01, cliente01);
-		FichaDeTreino fichaDeTreino02 = new FichaDeTreino(null, "Ficha de Treino 02", StatusTreino.CANCELADO, LocalDateTime.now(), LocalDate.of(2021, 12, 28), LocalDate.of(2022, 01, 18),"Secar e queimar gorduras", 4, "repetir ficha no mes 02/2022", instrutor01, cliente01);
+		FichaDeTreino fichaDeTreino01 = new FichaDeTreino(null, "Ficha de Treino 01", StatusTreino.ANDAMENTO, sdf.parse("07/12/2021 14:00:00"), sdf.parse("08/12/2021 00:00:00"), sdf.parse("26/12/2021 00:00:00"),"Ganho de massa muscular", 6, "ficha referente mes 12/2021", instrutor01, cliente01);
+		FichaDeTreino fichaDeTreino02 = new FichaDeTreino(null, "Ficha de Treino 02", StatusTreino.CANCELADO, sdf.parse("26/12/2021 19:00:00"), sdf.parse("28/12/2021 00:00:00"), sdf.parse("18/01/2022 00:00:00"),"Secar e queimar gorduras", 4, "repetir ficha no mes 02/2022", instrutor01, cliente01);
 		
 		instrutor01.getFichaDeTreinos().addAll(Arrays.asList(fichaDeTreino01, fichaDeTreino02));
 		cliente01.getFichaDeTreinos().addAll(Arrays.asList(fichaDeTreino01,fichaDeTreino02));

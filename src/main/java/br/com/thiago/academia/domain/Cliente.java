@@ -1,9 +1,8 @@
 package br.com.thiago.academia.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -33,10 +32,10 @@ public class Cliente implements Serializable{
 	private String nome;
 	private String cpf;
 	private String email;
-	private LocalDateTime dataDeCadastro;
+	private Date dataDeCadastro;
 	private Integer status;
 	private Integer genero;
-	private LocalDate dataDeNascimento;
+	private Date dataDeNascimento;
 	private String rg;
 	private Integer estadoCivil;
 	private String observacao;
@@ -63,8 +62,8 @@ public class Cliente implements Serializable{
 
 
 
-	public Cliente(Integer id, String nome, String cpf, String email, LocalDateTime dataDeCadastro, Status status,
-			Genero genero, LocalDate dataDeNascimento, String rg, EstadoCivil estadoCivil, String observacao) {
+	public Cliente(Integer id, String nome, String cpf, String email, Date dataDeCadastro, Status status,
+			Genero genero, Date dataDeNascimento, String rg, EstadoCivil estadoCivil, String observacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -123,12 +122,12 @@ public class Cliente implements Serializable{
 	}
 
 
-	public LocalDateTime getDataDeCadastro() {
+	public Date getDataDeCadastro() {
 		return dataDeCadastro;
 	}
 
 
-	public void setDataDeCadastro(LocalDateTime dataDeCadastro) {
+	public void setDataDeCadastro(Date dataDeCadastro) {
 		this.dataDeCadastro = dataDeCadastro;
 	}
 
@@ -153,12 +152,12 @@ public class Cliente implements Serializable{
 	}
 
 
-	public LocalDate getDataDeNascimento() {
+	public Date getDataDeNascimento() {
 		return dataDeNascimento;
 	}
 
 
-	public void setDataDeNascimento(LocalDate dataDeNascimento) {
+	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
