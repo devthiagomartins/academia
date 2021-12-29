@@ -10,8 +10,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +36,8 @@ public class Instrutor implements Serializable{
 	private Integer id;
 	
 	private String nome;
+	
+	@Column(unique = true)
 	private String cref;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -43,7 +47,7 @@ public class Instrutor implements Serializable{
 	private Integer genero;
 	private String observacao;
 	
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "TELEFONES_INSTRUTOR")
 	private Set<String> telefones = new HashSet<>();
 	

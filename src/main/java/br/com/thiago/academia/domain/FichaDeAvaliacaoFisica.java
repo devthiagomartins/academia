@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class FichaDeAvaliacaoFisica implements Serializable{
@@ -23,7 +23,10 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 	private Integer id;
 	
 	private Double peso;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeRegistro;
+	
 	private Double gastoMetabolico;
 	private Integer idadeMetabolica;
 	private Double porcentagemDeLiquido;
@@ -34,12 +37,12 @@ public class FichaDeAvaliacaoFisica implements Serializable{
 	private Double pesoGordo;
 	private String observacao;
 	
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "instrutor_id")
 	private Instrutor instrutor;

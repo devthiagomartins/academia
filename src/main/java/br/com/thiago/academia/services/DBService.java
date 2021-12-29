@@ -124,12 +124,20 @@ public class DBService {
 		Exercicio exercicio01 = new Exercicio(null, "Agachamento", 3, 15, 30.0, 30.0, Intensidade.MODERADA, null, fichaDeTreino02, categoria02, aparelho01);
 		Exercicio exercicio02 = new Exercicio(null, "Triceps corda",2, 15, 40.0, 40.0, Intensidade.LEVE, "drop-set", fichaDeTreino02, categoria01, aparelho02);
 		Exercicio exercicio03 = new Exercicio(null, "Afundo",3, 15, 25.0, 30.0, Intensidade.LEVE, null, fichaDeTreino02, categoria02, aparelho01);
+		
+		exercicio01.setFichaDeTreino(fichaDeTreino01);
+		exercicio02.setFichaDeTreino(fichaDeTreino02);
+		exercicio03.setFichaDeTreino(fichaDeTreino01);
+		
+		
 
 		categoria01.getExercicios().addAll(Arrays.asList(exercicio02));
 		categoria02.getExercicios().addAll(Arrays.asList(exercicio01, exercicio03));
 		
 		aparelho01.getExercicios().addAll(Arrays.asList(exercicio01, exercicio03));
 		aparelho02.getExercicios().addAll(Arrays.asList(exercicio02));
+		
+		
 		
 		
 		estadoRepository.saveAll(Arrays.asList(estado01));
