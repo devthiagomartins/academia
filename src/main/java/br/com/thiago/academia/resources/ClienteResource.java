@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thiago.academia.domain.Cliente;
+import br.com.thiago.academia.domain.dtos.ClienteDTO;
 import br.com.thiago.academia.services.ClienteService;
 
 @RestController
@@ -18,10 +19,10 @@ public class ClienteResource {
 	ClienteService clienteService;
 	
 	@RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<Cliente> findById(@PathVariable Integer id){
+	public ResponseEntity<ClienteDTO> findById(@PathVariable Integer id){
 		
 		Cliente obj = clienteService.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new ClienteDTO(obj));
 		
 	}
 
