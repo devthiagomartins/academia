@@ -74,17 +74,32 @@ public class DBService {
 		estado01.getCidades().addAll(Arrays.asList(cidade01,cidade02));
 		
 		
-		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", sdf.parse("07/12/2021 12:40:00"), Status.ATIVO, Genero.MASCULINO, 
+		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", now, Status.ATIVO, Genero.MASCULINO, 
 										sdf.parse("28/01/2000 00:00:00"), "50.207.464-4", EstadoCivil.SOLTEIRO, "primeiro contato com academia");
 		
 		cliente01.getTelefones().addAll(Arrays.asList("99852208","99561044"));
 		
-		Endereco endereco01 = new Endereco(null, "Rua CP19", "156-CP","Quadra CP 7", "Celina Park", "74.373-190", cidade01, cliente01);
-		Endereco endereco02 = new Endereco(null, "Rua ED 45", "1", "Quadra ED 20", "Eldorado", "74.179-505", cidade01, cliente01);
+		
+		
+		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", sdf.parse("01/02/2019 12:45:00"), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
+		instrutor01.getTelefones().addAll(Arrays.asList("982352479","32562300"));
+		
+		Endereco endereco01 = new Endereco(null, "Rua CP19", "156-CP","Quadra CP 7", "Celina Park", "74.373-190", cidade01, cliente01, null);
+		Endereco endereco02 = new Endereco(null, "Rua ED 45", "1", "Quadra ED 20", "Eldorado", "74.179-505", cidade01, cliente01, null);
+		Endereco endereco03 = new Endereco(null, "Edificio Marinhos", "312", "Apto 23", "Setor Marinhos", "11.889-500", cidade01, null, instrutor01);
+		
+		
+		
+		cliente01.getEnderecos().addAll(Arrays.asList(endereco01,endereco02));
+		endereco01.setCliente(cliente01);
+		endereco02.setCliente(cliente01);
+		
+		instrutor01.getEnderecos().addAll(Arrays.asList(endereco03));
+		endereco03.setInstrutor(instrutor01);
+		
 		
 		cidade01.getEnderecos().addAll(Arrays.asList(endereco01,endereco02));
 		
-		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", sdf.parse("01/02/2019 12:45:00"), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
 		
 		FichaDeAvaliacaoFisica avaliacao01 = new FichaDeAvaliacaoFisica(null, 74.0, sdf.parse("07/12/2021 13:00:00") ,2.300, 19, 52.6, 1.5, 2.3, 29.2, 43.2, 18.7, "fazer exame de sangue", cliente01, instrutor01);
 		FichaDeAvaliacaoFisica avaliacao02 = new FichaDeAvaliacaoFisica(null, 71.0,sdf.parse("27/12/2021 14:00:00"),
@@ -120,8 +135,8 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(estado01));
 		cidadeRepository.saveAll(Arrays.asList(cidade01, cidade02));
 		clienteRepository.saveAll(Arrays.asList(cliente01));
-		enderecoRepository.saveAll(Arrays.asList(endereco01,endereco02));
 		instrutorRepository.saveAll(Arrays.asList(instrutor01));
+		enderecoRepository.saveAll(Arrays.asList(endereco01,endereco02,endereco03));
 		fichaDeAvaliacaoFisicaRepository.saveAll(Arrays.asList(avaliacao01,avaliacao02));
 		categoriaRepository.saveAll(Arrays.asList(categoria01,categoria02));
 		aparelhoRepository.saveAll(Arrays.asList(aparelho01,aparelho02));

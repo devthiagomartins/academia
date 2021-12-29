@@ -28,7 +28,7 @@ public enum EstadoCivil {
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: "+ cod);
+		throw new IllegalArgumentException("Estado Civil inválido: Id - "+cod);
 	}
 
 	

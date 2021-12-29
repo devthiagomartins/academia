@@ -26,7 +26,7 @@ public enum Intensidade {
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: "+ cod);
+		throw new IllegalArgumentException("Intensidade inválida: Id - "+cod);
 	}
 	
 	

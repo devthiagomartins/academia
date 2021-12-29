@@ -30,7 +30,7 @@ public enum StatusTreino {
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: "+ cod);
+		throw new IllegalArgumentException("Status do Treino inválido: Id - "+cod);
 	}
 	
 	public Integer getCod() {

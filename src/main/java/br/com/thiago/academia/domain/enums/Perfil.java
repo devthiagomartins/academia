@@ -1,33 +1,33 @@
 package br.com.thiago.academia.domain.enums;
 
-public enum Genero {
+public enum Perfil {
 
-	MASCULINO(0,"Masculino"),
-	FEMININO(1,"Feminino"),
-	OUTROS(2,"Outros");
+	ADMIN(0,"ROLE_ADMIN"),
+	CLIENTE(1,"ROLE_CLIENTE"),
+	INSTRUTOR(2,"ROLE_INSTRUTOR");
 	
 	private Integer cod;
 	private String descricao;
 	
 	
-	private Genero(Integer cod, String descricao) {
+	private Perfil(Integer cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
 	
 	
-	public static Genero toEnum(Integer cod) {
+	public static Perfil toEnum(Integer cod) {
 		if(cod == null) {
 			return null;
 		}
 		
-		for(Genero x : Genero.values()) {
+		for(Perfil x : Perfil.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}
 		}
 		
-		throw new IllegalArgumentException("Gênero inválido: Id - "+cod);
+		throw new IllegalArgumentException("Perfil inválido: Id - "+cod);
 	}
 	
 	

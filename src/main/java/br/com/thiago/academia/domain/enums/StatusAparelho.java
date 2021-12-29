@@ -26,7 +26,7 @@ public enum StatusAparelho {
 			}
 		}
 		
-		throw new IllegalArgumentException("Id inválido: "+ cod);
+		throw new IllegalArgumentException("Status do Aparelho inválido: Id - "+cod);
 	}
 	
 	

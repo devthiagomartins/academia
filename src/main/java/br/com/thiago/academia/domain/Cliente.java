@@ -7,8 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,8 +18,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.thiago.academia.domain.enums.EstadoCivil;
 import br.com.thiago.academia.domain.enums.Genero;
+import br.com.thiago.academia.domain.enums.Perfil;
 import br.com.thiago.academia.domain.enums.Status;
 
 @Entity
@@ -30,24 +36,40 @@ public class Cliente implements Serializable{
 	private Integer id;
 	
 	private String nome;
+	
+	@Column(unique = true)
 	private String cpf;
+	
+	@Column(unique = true)
 	private String email;
-	private Date dataDeCadastro;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date dataDeCadastro = new Date();
+	
 	private Integer status;
 	private Integer genero;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeNascimento;
+	
 	private String rg;
 	private Integer estadoCivil;
 	private String observacao;
 	
+	@ElementCollection
+	@CollectionTable(name = "PERFIS_CLIENTE")
+	private Set<Integer> perfis = new HashSet<>();
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<FichaDeAvaliacaoFisica> avaliacoes = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<FichaDeTreino> fichaDeTreinos = new ArrayList<>();
-	
+	 
 	@ElementCollection
-	@CollectionTable(name = "TELEFONE")
+	@CollectionTable(name = "TELEFONES_CLIENTE")
 	private Set<String> telefones = new HashSet<>();
 	
 	@OneToMany(mappedBy = "cliente")
@@ -55,6 +77,7 @@ public class Cliente implements Serializable{
 	
 	
 	public Cliente() {
+		addPerfil(Perfil.CLIENTE);
 		
 	}
 
@@ -76,6 +99,8 @@ public class Cliente implements Serializable{
 		this.rg = rg;
 		this.estadoCivil = estadoCivil.getCod();
 		this.observacao = observacao;
+		
+		addPerfil(Perfil.CLIENTE);
 	}
 
 
@@ -211,25 +236,42 @@ public class Cliente implements Serializable{
 		this.fichaDeTreinos = fichaDeTreinos;
 	}
 
-
 	public Set<String> getTelefones() {
 		return telefones;
 	}
-
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
 
-
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
-
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil) {
+		this.perfis.add(perfil.getCod());
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public void setGenero(Integer genero) {
+		this.genero = genero;
+	}
+
+	public void setEstadoCivil(Integer estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
 
 
 

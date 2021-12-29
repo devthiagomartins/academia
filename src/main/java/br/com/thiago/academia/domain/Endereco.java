@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Endereco implements Serializable{
 	
@@ -25,13 +27,20 @@ public class Endereco implements Serializable{
 	private String bairro;
 	private String cep;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "instrutor_id")
+	private Instrutor instrutor;
 	
 	
 	public Endereco() {
@@ -40,7 +49,7 @@ public class Endereco implements Serializable{
 
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
-			Cidade cidade, Cliente cliente) {
+			Cidade cidade, Cliente cliente, Instrutor instrutor) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -50,6 +59,7 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 		this.cidade = cidade;
 		this.cliente = cliente;
+		this.instrutor = instrutor;
 	}
 
 
@@ -116,6 +126,16 @@ public class Endereco implements Serializable{
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+
+	public Instrutor getInstrutor() {
+		return instrutor;
+	}
+
+
+	public void setInstrutor(Instrutor instrutor) {
+		this.instrutor = instrutor;
 	}
 
 

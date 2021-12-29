@@ -3,16 +3,25 @@ package br.com.thiago.academia.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.thiago.academia.domain.enums.Genero;
+import br.com.thiago.academia.domain.enums.Perfil;
 import br.com.thiago.academia.domain.enums.Status;
 
 @Entity
@@ -26,20 +35,36 @@ public class Instrutor implements Serializable{
 	
 	private String nome;
 	private String cref;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataDeCadastro;
+	
 	private Integer status;
 	private Integer genero;
 	private String observacao;
 	
+	@ElementCollection
+	@CollectionTable(name = "TELEFONES_INSTRUTOR")
+	private Set<String> telefones = new HashSet<>();
+	
+	@OneToMany(mappedBy = "instrutor")
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name = "PERFIS_INSTRUTOR")
+	private Set<Integer> perfis = new HashSet<>();
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "instrutor")
 	private List<FichaDeAvaliacaoFisica> avaliacoes = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "instrutor")
 	private List<FichaDeTreino> fichaDeTreinos = new ArrayList<>();
 	
 	
 	public Instrutor() {
-		
+		addPerfil(Perfil.INSTRUTOR);
 	}
 
 
@@ -53,6 +78,7 @@ public class Instrutor implements Serializable{
 		this.status = status.getCod();
 		this.genero = genero.getCod();
 		this.observacao = observacao;
+		addPerfil(Perfil.INSTRUTOR);
 	}
 
 
@@ -146,12 +172,55 @@ public class Instrutor implements Serializable{
 	}
 
 
+	
+	
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil) {
+		this.perfis.add(perfil.getCod());
+	}
+
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+
+	public void setGenero(Integer genero) {
+		this.genero = genero;
+	}
+
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
+	
+	
+
+	public Set<String> getTelefones() {
+		return telefones;
+	}
+
+
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
+	}
+
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
 
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
