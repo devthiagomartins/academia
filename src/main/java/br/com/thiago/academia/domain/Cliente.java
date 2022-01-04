@@ -57,6 +57,8 @@ public class Cliente implements Serializable{
 	private Integer estadoCivil;
 	private String observacao;
 	
+	private String senha;
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS_CLIENTE")
 	private Set<Integer> perfis = new HashSet<>();
@@ -87,7 +89,7 @@ public class Cliente implements Serializable{
 
 
 	public Cliente(Integer id, String nome, String cpf, String email, Date dataDeCadastro, Status status,
-			Genero genero, Date dataDeNascimento, String rg, EstadoCivil estadoCivil, String observacao) {
+			Genero genero, Date dataDeNascimento, String rg, EstadoCivil estadoCivil, String observacao, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -100,6 +102,7 @@ public class Cliente implements Serializable{
 		this.rg = rg;
 		this.estadoCivil = estadoCivil.getCod();
 		this.observacao = observacao;
+		this.senha = senha;
 		
 		addPerfil(Perfil.CLIENTE);
 	}
@@ -145,6 +148,16 @@ public class Cliente implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 

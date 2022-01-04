@@ -38,6 +38,7 @@ public class ClienteDTO implements Serializable{
 	private String rg;
 	private Integer estadoCivil;
 	private String observacao;
+	private String senha;
 	private Set<Integer> perfis = new HashSet<>();
 	private Set<String> telefones = new HashSet<>();
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -61,6 +62,7 @@ public class ClienteDTO implements Serializable{
 		this.rg = obj.getRg();
 		this.estadoCivil = obj.getEstadoCivil().getCod();
 		this.observacao = obj.getObservacao();
+		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCod()).collect(Collectors.toSet());
 		this.telefones = obj.getTelefones();
 		this.enderecos = obj.getEnderecos();
@@ -185,6 +187,17 @@ public class ClienteDTO implements Serializable{
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 
