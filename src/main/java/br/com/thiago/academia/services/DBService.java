@@ -76,6 +76,7 @@ public class DBService {
 		
 		Cliente cliente01 = new Cliente(null, "Arnaldo", "357.753.700-07", "arnaldo@email.com", now, Status.ATIVO, Genero.MASCULINO, 
 										sdf.parse("28/01/2000 00:00:00"), "50.207.464-4", EstadoCivil.SOLTEIRO, "primeiro contato com academia","123");
+	
 		
 		cliente01.getTelefones().addAll(Arrays.asList("99852208","99561044"));
 		

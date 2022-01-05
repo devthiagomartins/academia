@@ -1,5 +1,6 @@
 package br.com.thiago.academia.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class InstrutorService {
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Instrutor.class.getName()));
+	}
+
+	public List<Instrutor> findAll() {
+		
+		return instrutorRepository.findAll();
 	}
 }
