@@ -81,7 +81,7 @@ public class DBService {
 		
 		
 		
-		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", sdf.parse("01/02/2019 12:45:00"), Status.ATIVO, Genero.FEMININO, "instrutora freelancer");
+		Instrutor instrutor01 = new Instrutor(null, "Laura", "123987-G/GO", sdf.parse("01/02/2019 12:45:00"), Status.ATIVO, Genero.FEMININO, "instrutora freelancer","123");
 		instrutor01.getTelefones().addAll(Arrays.asList("982352479","32562300"));
 		
 		Endereco endereco01 = new Endereco(null, "Rua CP19", "156-CP","Quadra CP 7", "Celina Park", "74.373-190", cidade01, cliente01, null);

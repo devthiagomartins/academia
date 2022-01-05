@@ -37,6 +37,8 @@ public class Instrutor implements Serializable{
 	
 	private String nome;
 	
+	private String senha;
+	
 	@Column(unique = true)
 	private String cref;
 	
@@ -72,11 +74,12 @@ public class Instrutor implements Serializable{
 	}
 
 
-	public Instrutor(Integer id, String nome, String cref, Date dataDeCadastro, Status status, Genero genero,
-			String observacao) {
+	public Instrutor(Integer id, String nome ,String cref, Date dataDeCadastro, Status status, Genero genero,
+			String observacao,  String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.senha = senha;
 		this.cref = cref;
 		this.dataDeCadastro = dataDeCadastro;
 		this.status = status.getCod();
@@ -103,6 +106,17 @@ public class Instrutor implements Serializable{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 
@@ -184,16 +198,6 @@ public class Instrutor implements Serializable{
 
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCod());
-	}
-
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-
-	public void setGenero(Integer genero) {
-		this.genero = genero;
 	}
 
 

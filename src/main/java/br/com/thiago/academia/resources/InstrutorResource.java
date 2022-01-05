@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thiago.academia.domain.Instrutor;
+import br.com.thiago.academia.domain.dtos.InstrutorDTO;
 import br.com.thiago.academia.services.InstrutorService;
 
 @RestController
@@ -18,10 +19,10 @@ public class InstrutorResource {
 	InstrutorService instrutorService;
 	
 	@RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-	public ResponseEntity<Instrutor> findById(@PathVariable Integer id){
+	public ResponseEntity<InstrutorDTO> findById(@PathVariable Integer id){
 		
 		Instrutor obj = instrutorService.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new InstrutorDTO(obj));
 		
 	}
 
