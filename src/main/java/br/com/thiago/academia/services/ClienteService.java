@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.thiago.academia.domain.Cliente;
+import br.com.thiago.academia.domain.dtos.ClienteDTO;
 import br.com.thiago.academia.repositories.ClienteRepository;
 import br.com.thiago.academia.services.exceptions.ObjectNotFoundException;
 
@@ -27,6 +28,14 @@ public class ClienteService {
 	public List<Cliente> findAll() {
 		
 		return clienteRepository.findAll();
+	}
+
+	public Cliente create(ClienteDTO objDTO) {
+		
+		objDTO.setId(null);
+		
+		Cliente newObj = new Cliente(objDTO);
+		return clienteRepository.save(newObj);
 	}
 	
 	

@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.thiago.academia.domain.dtos.ClienteDTO;
 import br.com.thiago.academia.domain.enums.EstadoCivil;
 import br.com.thiago.academia.domain.enums.Genero;
 import br.com.thiago.academia.domain.enums.Perfil;
@@ -107,6 +108,25 @@ public class Cliente implements Serializable{
 		addPerfil(Perfil.CLIENTE);
 	}
 
+
+	public Cliente(ClienteDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.cpf = obj.getCpf();
+		this.email = obj.getEmail();
+		this.dataDeCadastro = obj.getDataDeCadastro();
+		this.status = obj.getStatus().getCod();
+		this.genero = obj.getGenero().getCod();
+		this.dataDeNascimento = obj.getDataDeNascimento();
+		this.rg = obj.getRg();
+		this.estadoCivil = obj.getEstadoCivil().getCod();
+		this.observacao = obj.getObservacao();
+		this.senha = obj.getSenha();
+		this.perfis = obj.getPerfis().stream().map(x -> x.getCod()).collect(Collectors.toSet());
+		this.telefones = obj.getTelefones();
+		this.enderecos = obj.getEnderecos();
+	}
 
 
 

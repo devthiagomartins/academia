@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thiago.academia.domain.Cliente;
 import br.com.thiago.academia.domain.Instrutor;
-import br.com.thiago.academia.domain.dtos.ClienteDTO;
 import br.com.thiago.academia.domain.dtos.InstrutorDTO;
 import br.com.thiago.academia.services.InstrutorService;
 

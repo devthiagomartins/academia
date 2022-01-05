@@ -12,7 +12,7 @@ public enum Perfil {
 	
 	private Perfil(Integer cod, String descricao) {
 		this.cod = cod;
-		this.descricao = descricao;
+		this.descricao = descricao; 
 	}
 	
 	
